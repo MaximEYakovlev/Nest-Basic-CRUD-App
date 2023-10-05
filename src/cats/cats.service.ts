@@ -9,8 +9,8 @@ export class CatsService {
   constructor(@InjectModel(Cat.name) private catModel: Model<Cat>) {}
 
   async create(createCatDto: CreateCatDto): Promise<Cat> {
-    const createdCat = new this.catModel(createCatDto);
-    return createdCat.save();
+    const createdCat = await this.catModel.create(createCatDto);
+    return createdCat;
   }
 
   async findAll(): Promise<Cat[]> {
